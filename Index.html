@@ -32,81 +32,31 @@
         }
 
         /* --- VIEWS UTILITY --- */
-        .view-section {
-            display: none; 
-            width: 100%;
-            max-width: 500px;
-            animation: fadeIn 0.4s ease;
-        }
+        .view-section { display: none; width: 100%; max-width: 500px; animation: fadeIn 0.4s ease; }
         .view-section.active { display: block; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* --- LANDING PAGE --- */
         .login-card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(15, 76, 58, 0.2);
-            text-align: center;
-            margin-top: 40px;
+            background: white; padding: 40px 30px; border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(15, 76, 58, 0.2); text-align: center; margin-top: 40px;
         }
-
-        /* CIRCULAR LOGO */
         .login-logo-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--brand-dark-green);
-            margin-bottom: 15px;
-            background: #eee;
+            width: 100px; height: 100px; border-radius: 50%; object-fit: cover;
+            border: 4px solid var(--brand-dark-green); margin-bottom: 15px; background: #eee;
         }
-
-        .login-logo-text {
-            color: var(--brand-dark-green);
-            font-size: 32px;
-            font-weight: 900;
-            margin-bottom: 5px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-        
+        .login-logo-text { color: var(--brand-dark-green); font-size: 32px; font-weight: 900; margin-bottom: 5px; text-transform: uppercase; }
         .login-subtitle { color: #6b7280; margin-bottom: 30px; font-size: 14px; }
         .input-group { text-align: left; margin-bottom: 20px; }
         .input-group label { display: block; color: var(--brand-dark-green); font-weight: 700; font-size: 13px; margin-bottom: 8px; text-transform: uppercase; }
-
-        .styled-input {
-            width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 10px;
-            font-size: 16px; outline: none; transition: border 0.3s;
-        }
+        .styled-input { width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 10px; font-size: 16px; outline: none; transition: border 0.3s; }
         .styled-input:focus { border-color: var(--brand-light-green); }
-
-        .start-btn {
-            background-color: var(--brand-dark-green); color: white; width: 100%; padding: 16px;
-            border: none; border-radius: 10px; font-size: 16px; font-weight: 700; cursor: pointer;
-            margin-top: 10px; box-shadow: 0 4px 12px rgba(15, 76, 58, 0.3); transition: transform 0.2s;
-        }
+        .start-btn { background-color: var(--brand-dark-green); color: white; width: 100%; padding: 16px; border: none; border-radius: 10px; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 12px rgba(15, 76, 58, 0.3); transition: transform 0.2s; }
         .start-btn:active { transform: scale(0.98); }
 
         /* --- CALCULATOR PAGE --- */
-        .app-card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: 0 10px 40px rgba(15, 76, 58, 0.2);
-            display: flex; flex-direction: column; gap: 15px;
-            min-height: auto;
-        }
-
-        .customer-bar {
-            background: #f0fdf4; border: 1px dashed var(--brand-light-green); padding: 12px;
-            border-radius: 8px; font-size: 13px; color: var(--brand-dark-green);
-            display: flex; justify-content: space-between; align-items: center;
-        }
+        .app-card { background-color: var(--card-bg); border-radius: 16px; padding: 25px; box-shadow: 0 10px 40px rgba(15, 76, 58, 0.2); display: flex; flex-direction: column; gap: 15px; min-height: auto; }
+        .customer-bar { background: #f0fdf4; border: 1px dashed var(--brand-light-green); padding: 12px; border-radius: 8px; font-size: 13px; color: var(--brand-dark-green); display: flex; justify-content: space-between; align-items: center; }
 
         @media (max-width: 600px) {
             body { padding: 0; background-color: white; overflow-y: scroll; }
@@ -114,30 +64,23 @@
             .app-card { border-radius: 0; box-shadow: none; padding: 20px; min-height: 100vh; }
         }
 
-        /* Calculator Components */
         .brand-header { text-align: center; border-bottom: 2px solid var(--brand-light-green); padding-bottom: 15px; margin-bottom: 5px; }
         .brand-title { color: var(--brand-dark-green); font-size: 26px; font-weight: 800; text-transform: uppercase; margin: 0; }
-        
         #items-container { display: flex; flex-direction: column; gap: 15px; height: auto; overflow: visible; }
-        
         .item-row { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; }
         .item-main-content { padding: 15px; }
         .row-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
         .item-name-input { width: 100%; border: none; background: transparent; font-weight: 600; color: var(--brand-dark-green); font-size: 15px; outline: none; border-bottom: 1px dashed #cbd5e1; padding-bottom: 4px; border-radius: 0; }
         .remove-btn { background: #fee2e2; border: none; color: #ef4444; width: 24px; height: 24px; border-radius: 50%; font-size: 16px; cursor: pointer; margin-left: 10px; }
-
         .controls-flex { display: flex; gap: 12px; align-items: flex-end; }
         .micro-label { font-size: 10px; font-weight: 700; color: #6b7280; margin-bottom: 6px; text-transform: uppercase; }
-        
         .qty-wrapper { width: 70px; flex-shrink: 0; }
         .qty-input { width: 100%; padding: 18px 5px; text-align: center; font-size: 16px; border: 1px solid #d1d5db; border-radius: 8px; font-weight: bold; outline: none; -webkit-appearance: none; margin: 0;}
-        
         .price-stack-wrapper { flex-grow: 1; }
         .stacked-box { display: flex; flex-direction: column; border: 1px solid var(--brand-dark-green); border-radius: 8px; overflow: hidden; background: white; }
         .stacked-box input { width: 100%; border: none; padding: 8px 10px; font-size: 15px; outline: none; text-align: right; -webkit-appearance: none; margin: 0; }
         .mrp-input { border-bottom: 1px solid #e5e7eb !important; height: 32px; font-weight: 600; }
         .disc-input { height: 30px; background-color: #f0fdf4; color: var(--brand-dark-green); }
-
         .subtotal-toggle { width: 100%; background: #eef2ff; border: none; border-top: 1px solid #e0e7ff; padding: 12px 15px; color: #4f46e5; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
         .subtotal-toggle.active-toggle { background-color: #374151; color: white; border-color: #374151; }
         .details-panel { display: none; background-color: #374151; color: white; padding: 15px; font-size: 13px; }
@@ -145,33 +88,26 @@
         @keyframes slideDown { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
         .detail-row { display: flex; justify-content: space-between; margin-bottom: 6px; }
         .detail-row.highlight { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 8px; margin-top: 8px; color: var(--brand-light-green); font-weight: 700; font-size: 15px;}
-
         .add-btn { background-color: var(--brand-dark-green); color: white; border: none; padding: 14px; border-radius: 8px; cursor: pointer; font-weight: 600; width: 100%; display: flex; align-items: center; justify-content: center; font-size: 15px; margin-top: 10px; }
         
-        /* GST Toggle */
-        .gst-toggle-row {
-            display: flex; justify-content: space-between; align-items: center;
-            background: #f3f4f6; padding: 10px 15px; border-radius: 8px; margin-top: 10px;
-        }
+        .gst-toggle-row { display: flex; justify-content: space-between; align-items: center; background: #f3f4f6; padding: 10px 15px; border-radius: 8px; margin-top: 10px; }
         .gst-label { font-weight: 600; font-size: 14px; color: #374151; }
         .switch { position: relative; display: inline-block; width: 44px; height: 24px; }
         .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; -webkit-transition: .4s; transition: .4s; border-radius: 34px; }
-        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; -webkit-transition: .4s; transition: .4s; border-radius: 50%; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
         input:checked + .slider { background-color: var(--brand-dark-green); }
-        input:checked + .slider:before { -webkit-transform: translateX(20px); -ms-transform: translateX(20px); transform: translateX(20px); }
-
+        input:checked + .slider:before { transform: translateX(20px); }
+        
         .summary-section { background: linear-gradient(135deg, var(--brand-dark-green) 0%, #1a5e4a 100%); color: white; padding: 20px; border-radius: 12px; margin-top: 15px; }
         .summary-row { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px; }
         .total-row { display: flex; justify-content: space-between; align-items: center; font-size: 18px; font-weight: 700; }
         .big-price { font-size: 32px; color: var(--brand-light-green); }
-
-        /* Action Buttons */
         .action-buttons { display: flex; gap: 10px; margin-top: 15px; }
         .pdf-btn { flex: 1; background-color: #4f46e5; color: white; border: none; padding: 15px; border-radius: 8px; cursor: pointer; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; }
         .preview-btn { flex: 1; background-color: #1f2937; color: white; border: none; padding: 15px; border-radius: 8px; cursor: pointer; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; }
 
-        /* --- PDF TEMPLATE (Hidden by default) --- */
+        /* --- PDF TEMPLATE --- */
         #invoice-template { 
             display: none; 
             width: 790px; 
@@ -179,131 +115,44 @@
             background: white; 
             font-family: 'Helvetica', 'Arial', sans-serif; 
             color: #000;
+            box-sizing: border-box;
         }
-
-        /* Prevent page breaks inside rows */
+        
+        .pdf-page-wrapper { margin-top: 20px; }
         .inv-table tr { page-break-inside: avoid; }
-
-        .inv-header-grid {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 2px solid #0f4c3a;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-        }
-
-        .inv-company-details {
-            font-size: 12px;
-            line-height: 1.5;
-            color: #333;
-            width: 60%;
-        }
-        .inv-company-name {
-            font-size: 18px;
-            font-weight: bold;
-            color: #000;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-        }
-
+        .inv-header-grid { display: flex; justify-content: space-between; border-bottom: 2px solid #0f4c3a; padding-bottom: 10px; margin-bottom: 15px; }
+        .inv-company-details { font-size: 12px; line-height: 1.5; color: #333; width: 60%; }
+        .inv-company-name { font-size: 18px; font-weight: bold; color: #000; margin-bottom: 5px; text-transform: uppercase; }
         .inv-header-right { text-align: right; width: 35%; }
         .inv-recipient-tag { font-size: 10px; color: #666; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
         .inv-logo-img { width: 90px; height: auto; }
-
-        .inv-doc-title {
-            text-align: center;
-            font-size: 20px;
-            font-weight: bold;
-            color: #0f4c3a; /* GREEN */
-            margin: 10px 0 25px 0;
-            text-transform: uppercase;
-        }
-
-        .inv-details-grid {
-            display: flex; justify-content: space-between; margin-bottom: 25px; font-size: 12px;
-        }
+        .inv-doc-title { text-align: center; font-size: 20px; font-weight: bold; color: #0f4c3a; margin: 5px 0 15px 0; text-transform: uppercase; }
+        .inv-details-grid { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 12px; }
         .inv-bill-to { width: 48%; }
         .inv-bill-title { font-weight: bold; margin-bottom: 5px; font-size: 13px; }
         .inv-cust-row { margin-bottom: 4px; font-size: 12px; }
-
         .inv-meta-details { width: 48%; text-align: right; }
         .inv-meta-row { margin-bottom: 5px; font-size: 12px; }
-
-        /* Table */
+        
         .inv-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12px; }
-        .inv-table th { 
-            background: transparent; 
-            border-top: 1px solid #0f4c3a; /* Green Border */
-            border-bottom: 1px solid #0f4c3a; 
-            padding: 10px 5px; 
-            text-align: left; 
-            font-weight: bold;
-            color: #000;
-        }
-        .inv-table td { 
-            border-bottom: 1px solid #eee; 
-            padding: 10px 5px; 
-            text-align: left; 
-        }
+        .inv-table th { background: transparent; border-top: 1px solid #0f4c3a; border-bottom: 1px solid #0f4c3a; padding: 10px 5px; text-align: left; font-weight: bold; color: #000; }
+        .inv-table td { border-bottom: 1px solid #eee; padding: 8px 5px; text-align: left; vertical-align: top; }
         .inv-table td.num, .inv-table th.num { text-align: right; }
+        .inv-table th.center, .inv-table td.center { text-align: center; }
 
-        /* Footer */
         .inv-footer { display: flex; justify-content: flex-end; margin-top: 25px; }
         .inv-tax-box { width: 320px; font-size: 12px; }
-        
         .inv-tax-row { display: flex; justify-content: space-between; padding: 5px 0; }
         .inv-tax-row span:last-child { font-weight: 500; }
-        
-        .inv-total-final { 
-            display: flex; justify-content: space-between; 
-            background-color: #0f4c3a; /* Green Bar */
-            color: white;
-            font-weight: bold;
-            padding: 10px 8px;
-            margin-top: 15px;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-
-        .inv-sign { margin-top: 70px; text-align: right; font-size: 12px; }
+        .inv-total-final { display: flex; justify-content: space-between; background-color: #0f4c3a; color: white; font-weight: bold; padding: 10px 8px; margin-top: 15px; border-radius: 4px; font-size: 14px; }
+        .inv-sign { margin-top: 60px; text-align: right; font-size: 12px; }
+        .qty-total-row td { border-top: 2px solid #000; font-weight: bold; padding-top: 8px; }
 
         /* --- PREVIEW MODAL --- */
-        .modal-overlay {
-            display: none;
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8); z-index: 1000;
-            justify-content: center; align-items: center;
-        }
-        .modal-content {
-            background: #555; padding: 10px; border-radius: 8px;
-            max-width: 95%; max-height: 90vh; overflow: auto; position: relative;
-        }
-        .close-modal {
-            position: absolute; top: 10px; right: 20px;
-            color: white; font-size: 30px; cursor: pointer; z-index: 1010;
-        }
-        #preview-container { transform: scale(0.85); transform-origin: top center; background: white; }
-        
-        /* --- PDF GENERATION LAYER (THE FIX) --- */
-        #pdf-generation-layer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: white;
-            z-index: 99999;
-            display: none;
-            overflow-y: auto;
-            justify-content: center;
-            align-items: flex-start;
-            padding-top: 20px;
-        }
-        #pdf-content-wrapper {
-            width: 790px;
-            margin-bottom: 50px;
-        }
-
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center; }
+        .modal-content { background: #555; padding: 10px; border-radius: 8px; max-width: 95%; max-height: 90vh; overflow: auto; position: relative; }
+        .close-modal { position: absolute; top: 10px; right: 20px; color: white; font-size: 30px; cursor: pointer; z-index: 1010; }
+        #preview-container { transform: scale(0.80); transform-origin: top center; background: white; }
     </style>
 </head>
 <body>
@@ -311,20 +160,10 @@
     <div id="landing-page" class="view-section active">
         <div class="login-card">
             <img src="logo.jpg" alt="Logo" class="login-logo-img" onerror="this.style.display='none'">
-            
             <div class="login-logo-text">SPINDLE TREE</div>
             <div class="login-subtitle">Generate Wholesale Estimate</div>
-
-            <div class="input-group">
-                <label>Customer Name</label>
-                <input type="text" id="custNameInput" class="styled-input" placeholder="Enter Client Name">
-            </div>
-
-            <div class="input-group">
-                <label>Phone Number</label>
-                <input type="tel" id="custPhoneInput" class="styled-input" placeholder="Enter Mobile Number">
-            </div>
-
+            <div class="input-group"><label>Customer Name</label><input type="text" id="custNameInput" class="styled-input" placeholder="Enter Client Name"></div>
+            <div class="input-group"><label>Phone Number</label><input type="tel" id="custPhoneInput" class="styled-input" placeholder="Enter Mobile Number"></div>
             <button class="start-btn" onclick="goToCalculator()">Start Estimate &rarr;</button>
         </div>
     </div>
@@ -334,31 +173,16 @@
             <div class="brand-header">
                 <h1 class="brand-title">SPINDLE TREE</h1>
                 <div class="customer-bar">
-                    <div>
-                        <div style="font-weight:bold" id="displayCustName">-</div>
-                        <div style="font-size:11px; opacity:0.8" id="displayCustPhone">-</div>
-                    </div>
-                    <div style="text-align:right">
-                        <div style="font-size:10px; text-transform:uppercase;">ID No.</div>
-                        <div style="font-weight:bold" id="displayID">#0000</div>
-                    </div>
+                    <div><div style="font-weight:bold" id="displayCustName">-</div><div style="font-size:11px; opacity:0.8" id="displayCustPhone">-</div></div>
+                    <div style="text-align:right"><div style="font-size:10px; text-transform:uppercase;">ID No.</div><div style="font-weight:bold" id="displayID">#0000</div></div>
                 </div>
             </div>
-
             <div id="items-container"></div>
-
-            <button class="add-btn" onclick="addItem()">
-                <span style="font-size:22px; margin-right:8px; line-height:0; padding-bottom:4px;">+</span> Add Item
-            </button>
-
+            <button class="add-btn" onclick="addItem()"><span style="font-size:22px; margin-right:8px; line-height:0; padding-bottom:4px;">+</span> Add Item</button>
             <div class="gst-toggle-row">
                 <span class="gst-label">Include 18% GST</span>
-                <label class="switch">
-                    <input type="checkbox" id="gstToggle" onchange="calculateTotal()">
-                    <span class="slider"></span>
-                </label>
+                <label class="switch"><input type="checkbox" id="gstToggle" onchange="calculateTotal()"><span class="slider"></span></label>
             </div>
-
             <div class="summary-section">
                 <div class="summary-row"><span>Subtotal</span><span id="subtotalDisplay">0.00</span></div>
                 <div id="ui-tax-rows" style="display:none">
@@ -368,118 +192,67 @@
                 <div style="height: 1px; background: rgba(255,255,255,0.2); margin: 10px 0;"></div>
                 <div class="total-row"><span>Net Payable</span><span class="big-price" id="finalTotal">0.00</span></div>
             </div>
-
             <div class="action-buttons">
-                <button class="preview-btn" onclick="openPreview()">
-                    👁 Preview
-                </button>
-                <button class="pdf-btn" onclick="generatePDF(false)">
-                    ⬇ Download
-                </button>
+                <button class="preview-btn" onclick="openPreview()">👁 Preview</button>
+                <button class="pdf-btn" onclick="generatePDF(false)">⬇ Download</button>
             </div>
-            
             <button onclick="resetToLogin()" style="background:none; border:none; color:#9ca3af; font-size:12px; margin-top:15px; cursor:pointer; width:100%;">Exit / New Customer</button>
         </div>
     </div>
 
     <div id="preview-modal" class="modal-overlay">
         <span class="close-modal" onclick="closePreview()">&times;</span>
-        <div class="modal-content">
-            <div id="preview-container"></div>
-        </div>
-    </div>
-    
-    <div id="pdf-generation-layer">
-        <div id="pdf-content-wrapper"></div>
+        <div class="modal-content"><div id="preview-container"></div></div>
     </div>
 
     <div id="invoice-template">
-        <div class="inv-header-grid">
-            <div class="inv-company-details">
-                <div class="inv-company-name">SPINDLE TREE PLYBOARDS</div>
-                Ground & 1st floor, V Pride Building, Narne Estate Rd,<br>
-                Serilingampally (M), Telangana 500084<br>
-                Phone no.: 8185857774<br>
-                Email: spindletreekondapur@gmail.com<br>
-                GSTIN: 36AFSFS4129K1ZC<br>
-                State: 36-Telangana
-            </div>
-            <div class="inv-header-right">
-                <div class="inv-recipient-tag">ORIGINAL FOR RECIPIENT</div>
-                <img src="logo.jpg" class="inv-logo-img" onerror="this.style.display='none'">
-            </div>
-        </div>
-
-        <div class="inv-doc-title">ESTIMATE</div>
-
-        <div class="inv-details-grid">
-            <div class="inv-bill-to">
-                <div class="inv-bill-title">Customer</div>
-                <div class="inv-cust-row">Name : <span id="pdfCustName" style="font-weight:bold; text-transform:uppercase;">Client Name</span></div>
-                <div class="inv-cust-row">Ph. no. : <span id="pdfCustPhone">Phone Number</span></div>
-            </div>
-            <div class="inv-meta-details">
-                <div class="inv-bill-title">Estimate Details</div>
-                <div class="inv-meta-row">Estimate No.: <span id="pdfID">#0000</span></div>
-                <div class="inv-meta-row">Date: <span id="pdfDate">00-00-0000</span></div>
-            </div>
-        </div>
-
-        <table class="inv-table">
-            <thead>
-                <tr>
-                    <th style="width: 5%;">#</th>
-                    <th style="width: 35%;">Item Description</th>
-                    
-                    <th style="width: 15%;" class="num mrp-col">Price</th>
-                    <th style="width: 10%;" class="num disc-col">Disc%</th>
-                    
-                    <th style="width: 15%;" class="num" id="pdfNetHeader">Price/Unit</th>
-                    <th style="width: 5%; text-align:center;">Qty</th>
-                    <th style="width: 15%;" class="num">Total</th>
-                </tr>
-            </thead>
-            <tbody id="invoice-items-body"></tbody>
-        </table>
-
-        <div class="inv-footer">
-            <div class="inv-tax-box">
-                <div class="inv-tax-row">
-                    <span>Sub Total</span>
-                    <span id="pdfSubtotal">0.00</span>
+        <div class="pdf-page-wrapper">
+            <div class="inv-header-grid">
+                <div class="inv-company-details">
+                    <div class="inv-company-name">SPINDLE TREE PLYBOARDS</div>
+                    Ground & 1st floor, V Pride Building, Narne Estate Rd,<br>Serilingampally (M), Telangana 500084<br>
+                    Phone no.: 8185857774<br>Email: spindletreekondapur@gmail.com<br>GSTIN: 36AFSFS4129K1ZC<br>State: 36-Telangana
                 </div>
-                
-                <div class="inv-tax-row disc-row">
-                    <span>Discount</span>
-                    <span id="pdfDiscountTotal">0.00</span>
+                <div class="inv-header-right">
+                    <div class="inv-recipient-tag">ORIGINAL FOR RECIPIENT</div>
+                    <img src="logo.jpg" class="inv-logo-img" onerror="this.style.display='none'">
                 </div>
-
-                <div id="pdf-tax-rows" style="display:none">
-                    <div class="inv-tax-row">
-                        <span>SGST@9%</span>
-                        <span id="pdfSGST">0.00</span>
+            </div>
+            <div class="inv-doc-title">ESTIMATE</div>
+            <div class="inv-details-grid">
+                <div class="inv-bill-to">
+                    <div class="inv-bill-title">Customer</div>
+                    <div class="inv-cust-row">Name : <span id="pdfCustName" style="font-weight:bold; text-transform:uppercase;">-</span></div>
+                    <div class="inv-cust-row">Ph. no. : <span id="pdfCustPhone">-</span></div>
+                </div>
+                <div class="inv-meta-details">
+                    <div class="inv-bill-title">Estimate Details</div>
+                    <div class="inv-meta-row">Estimate No.: <span id="pdfID">#0000</span></div>
+                    <div class="inv-meta-row">Date: <span id="pdfDate">00-00-0000</span></div>
+                </div>
+            </div>
+            <table class="inv-table">
+                <thead>
+                    <tr id="pdf-header-row"></tr>
+                </thead>
+                <tbody id="invoice-items-body"></tbody>
+            </table>
+            <div class="inv-footer">
+                <div class="inv-tax-box">
+                    <div class="inv-tax-row"><span>Sub Total</span><span id="pdfSubtotal">0.00</span></div>
+                    <div class="inv-tax-row disc-row"><span>Discount</span><span id="pdfDiscountTotal">0.00</span></div>
+                    <div id="pdf-tax-rows" style="display:none">
+                        <div class="inv-tax-row"><span>SGST@9%</span><span id="pdfSGST">0.00</span></div>
+                        <div class="inv-tax-row"><span>CGST@9%</span><span id="pdfCGST">0.00</span></div>
                     </div>
-                    <div class="inv-tax-row">
-                        <span>CGST@9%</span>
-                        <span id="pdfCGST">0.00</span>
-                    </div>
-                </div>
-                
-                <div class="inv-tax-row">
-                    <span>Round off</span>
-                    <span id="pdfRoundOff">0.00</span>
-                </div>
-                
-                <div class="inv-total-final">
-                    <span>Total</span>
-                    <span id="pdfGrandTotal">0.00</span>
+                    <div class="inv-tax-row"><span>Round off</span><span id="pdfRoundOff">0.00</span></div>
+                    <div class="inv-total-final"><span>Total</span><span id="pdfGrandTotal">0.00</span></div>
                 </div>
             </div>
-        </div>
-
-        <div class="inv-sign">
-            <div style="font-weight:bold; margin-bottom:40px;">For SPINDLE TREE PLYBOARDS</div>
-            <div>Authorized Signatory</div>
+            <div class="inv-sign">
+                <div style="font-weight:bold; margin-bottom:40px;">For SPINDLE TREE PLYBOARDS</div>
+                <div>Authorized Signatory</div>
+            </div>
         </div>
     </div>
 
@@ -492,48 +265,31 @@
             const year = now.getFullYear();
             const dd = String(now.getDate()).padStart(2, '0');
             const mm = String(now.getMonth() + 1).padStart(2, '0');
-            const hh = String(now.getHours()).padStart(2, '0');
-            const min = String(now.getMinutes()).padStart(2, '0');
-            return `FY/${year}/${mm}${dd}-${hh}${min}`;
+            return `FY/${year}/${mm}${dd}`;
         }
 
         function goToCalculator() {
             const name = document.getElementById('custNameInput').value.trim();
             const phone = document.getElementById('custPhoneInput').value.trim();
-
-            if (!name) {
-                alert("Please enter a Customer Name to proceed.");
-                return;
-            }
-
-            customerData.name = name;
-            customerData.phone = phone || "N/A";
-            customerData.id = generateID();
-
-            // Update UI
+            if (!name) { alert("Please enter Customer Name."); return; }
+            customerData.name = name; customerData.phone = phone || "N/A"; customerData.id = generateID();
             document.getElementById('displayCustName').innerText = customerData.name;
             document.getElementById('displayCustPhone').innerText = "Ph: " + customerData.phone;
             document.getElementById('displayID').innerText = customerData.id;
-
             document.getElementById('landing-page').classList.remove('active');
             document.getElementById('calculator-page').classList.add('active');
-            
-            if(document.getElementById('items-container').children.length === 0) {
-                addItem();
-            }
+            if(document.getElementById('items-container').children.length === 0) addItem();
             window.scrollTo(0, 0);
         }
 
         function resetToLogin() {
-            if(confirm("Exit and start new customer?")) {
+            if(confirm("Exit? Current data will be lost.")) {
                 document.getElementById('custNameInput').value = "";
                 document.getElementById('custPhoneInput').value = "";
                 document.getElementById('items-container').innerHTML = "";
                 itemCount = 0;
-                
                 document.getElementById('gstToggle').checked = false; 
                 calculateTotal();
-
                 document.getElementById('calculator-page').classList.remove('active');
                 document.getElementById('landing-page').classList.add('active');
             }
@@ -564,108 +320,58 @@
                         </div>
                     </div>
                 </div>
-                <button class="subtotal-toggle" onclick="toggleDetails(this)">
-                    <span>View Item Breakdown</span><span>▼</span>
-                </button>
+                <button class="subtotal-toggle" onclick="toggleDetails(this)"><span>View Item Breakdown</span><span>▼</span></button>
                 <div class="details-panel">
                     <div class="detail-row"><span>Net Unit Price:</span><span class="unit-net-display">0.00</span></div>
                     <div class="detail-row"><span>Quantity:</span><span class="qty-display">1</span></div>
                     <div class="detail-row highlight"><span>Item Total:</span><span class="row-total-display">0.00</span></div>
-                </div>
-            `;
+                </div>`;
             container.appendChild(itemDiv);
         }
 
         function toggleDetails(btn) {
             const currentPanel = btn.nextElementSibling;
             const isCurrentlyOpen = currentPanel.classList.contains('open');
-
-            document.querySelectorAll('.details-panel').forEach(panel => {
-                panel.classList.remove('open');
-                const prevBtn = panel.previousElementSibling;
-                if(prevBtn) {
-                    prevBtn.classList.remove('active-toggle');
-                    prevBtn.innerHTML = `<span>View Item Breakdown</span><span>▼</span>`;
-                    prevBtn.style.background = "#eef2ff";
-                    prevBtn.style.color = "#4f46e5";
-                }
-            });
-
-            if (!isCurrentlyOpen) {
-                currentPanel.classList.add('open');
-                btn.classList.add('active-toggle');
-                btn.innerHTML = `<span>Hide Breakdown</span><span>▲</span>`;
-                btn.style.background = "#374151";
-                btn.style.color = "#fff";
-            }
+            document.querySelectorAll('.details-panel').forEach(panel => { panel.classList.remove('open'); const prevBtn = panel.previousElementSibling; if(prevBtn) { prevBtn.classList.remove('active-toggle'); prevBtn.innerHTML = `<span>View Item Breakdown</span><span>▼</span>`; prevBtn.style.background = "#eef2ff"; prevBtn.style.color = "#4f46e5"; } });
+            if (!isCurrentlyOpen) { currentPanel.classList.add('open'); btn.classList.add('active-toggle'); btn.innerHTML = `<span>Hide Breakdown</span><span>▲</span>`; btn.style.background = "#374151"; btn.style.color = "#fff"; }
         }
 
         function removeItem(button) {
             const container = document.getElementById('items-container');
-            if (container.children.length > 1) {
-                button.closest('.item-row').remove();
-                calculateTotal();
-            } else {
-                const row = button.closest('.item-row');
-                row.querySelectorAll('input').forEach(i => {
-                    if(i.classList.contains('qty-input')) i.value = 1;
-                    else i.value = '';
-                });
-                calculateTotal();
-            }
+            if (container.children.length > 1) { button.closest('.item-row').remove(); calculateTotal(); }
+            else { const row = button.closest('.item-row'); row.querySelectorAll('input').forEach(i => { if(i.classList.contains('qty-input')) i.value = 1; else i.value = ''; }); calculateTotal(); }
         }
 
         function calculateTotal() {
             let totalTaxableValue = 0;
             const gstOn = document.getElementById('gstToggle').checked;
-            
-            const rows = document.querySelectorAll('.item-row');
-            
-            rows.forEach(row => {
+            document.querySelectorAll('.item-row').forEach(row => {
                 let qty = parseFloat(row.querySelector('.qty-input').value) || 0;
                 let mrp = parseFloat(row.querySelector('.mrp-input').value) || 0;
                 let discount = parseFloat(row.querySelector('.disc-input').value) || 0;
-                
                 let unitNetPrice = mrp - (mrp * discount / 100);
                 let lineTotal = unitNetPrice * qty;
-                
                 row.querySelector('.unit-net-display').innerText = unitNetPrice.toFixed(2);
                 row.querySelector('.qty-display').innerText = qty;
                 row.querySelector('.row-total-display').innerText = lineTotal.toFixed(2);
-
                 totalTaxableValue += lineTotal;
             });
-
-            // Tax Calc Logic
-            let sgst = 0;
-            let cgst = 0;
-            
-            if(gstOn) {
-                sgst = totalTaxableValue * 0.09;
-                cgst = totalTaxableValue * 0.09;
-                document.getElementById('ui-tax-rows').style.display = 'block';
-            } else {
-                document.getElementById('ui-tax-rows').style.display = 'none';
-            }
-
+            let sgst = 0, cgst = 0;
+            if(gstOn) { sgst = totalTaxableValue * 0.09; cgst = totalTaxableValue * 0.09; document.getElementById('ui-tax-rows').style.display = 'block'; }
+            else { document.getElementById('ui-tax-rows').style.display = 'none'; }
             let totalWithTax = totalTaxableValue + sgst + cgst;
             let roundTotal = Math.round(totalWithTax);
-
-            // Update UI
             document.getElementById('subtotalDisplay').innerText = totalTaxableValue.toFixed(2);
             document.getElementById('sgstDisplay').innerText = sgst.toFixed(2);
             document.getElementById('cgstDisplay').innerText = cgst.toFixed(2);
             document.getElementById('finalTotal').innerText = roundTotal.toFixed(2);
         }
 
-        // --- PREPARE INVOICE HTML ---
         function prepareInvoiceHTML() {
-            // 1. Basic Data
             document.getElementById('pdfCustName').innerText = customerData.name || "";
             document.getElementById('pdfCustPhone').innerText = customerData.phone || "";
             document.getElementById('pdfID').innerText = customerData.id;
-            const today = new Date();
-            document.getElementById('pdfDate').innerText = today.toLocaleDateString('en-GB');
+            document.getElementById('pdfDate').innerText = new Date().toLocaleDateString('en-GB');
 
             const gstOn = document.getElementById('gstToggle').checked;
             const tbody = document.getElementById('invoice-items-body');
@@ -673,77 +379,101 @@
             
             let grandTotalDisc = 0;
             let grandSubTotal = 0;
+            let totalQtyForFooter = 0;
 
             const rows = document.querySelectorAll('.item-row');
             
-            // 2. Discount Logic
-            let hasAnyDiscount = false;
+            // Logic for Brand Column
+            let hasBrands = false;
             rows.forEach(row => {
-                if((parseFloat(row.querySelector('.disc-input').value) || 0) > 0) hasAnyDiscount = true;
+                const nameVal = row.querySelector('.item-name-input').value || '';
+                if(nameVal.includes('/')) hasBrands = true;
             });
 
-            // 3. Configure PDF Headers
-            if (hasAnyDiscount) {
-                document.querySelectorAll('.mrp-col').forEach(el => el.style.display = 'table-cell');
-                document.querySelectorAll('.disc-col').forEach(el => el.style.display = 'table-cell');
-                document.getElementById('pdfNetHeader').innerText = "Net Price";
-                document.querySelector('.disc-row').style.display = 'flex';
-                document.getElementById('pdfNetHeader').style.width = '15%';
+            let hasAnyDiscount = false;
+            rows.forEach(row => { if((parseFloat(row.querySelector('.disc-input').value) || 0) > 0) hasAnyDiscount = true; });
+
+            // Headers
+            let headerHTML = `<th style="width: 5%;">#</th>`;
+            if (hasBrands) {
+                headerHTML += `<th style="width: 25%;">Item Description</th><th style="width: 15%;">Brand</th>`;
             } else {
-                document.querySelectorAll('.mrp-col').forEach(el => el.style.display = 'none');
-                document.querySelectorAll('.disc-col').forEach(el => el.style.display = 'none');
-                document.getElementById('pdfNetHeader').innerText = "Price/Unit";
-                document.getElementById('pdfNetHeader').style.width = '25%';
+                headerHTML += `<th style="width: 40%;">Item Description</th>`;
+            }
+            // Qty NEXT to Item
+            headerHTML += `<th style="width: 5%; text-align:center;">Qty</th>`; 
+
+            if (hasAnyDiscount) {
+                headerHTML += `<th style="width: 15%;" class="num">Price</th><th style="width: 10%;" class="num">Disc%</th><th style="width: 15%;" class="num">Net Price</th>`;
+                document.querySelector('.disc-row').style.display = 'flex';
+            } else {
+                headerHTML += `<th style="width: 20%;" class="num">Price/Unit</th>`;
                 document.querySelector('.disc-row').style.display = 'none';
             }
+            headerHTML += `<th style="width: 15%;" class="num">Total</th>`;
+            document.getElementById('pdf-header-row').innerHTML = headerHTML;
 
-            // 4. Build Table Rows
+            // Body
             rows.forEach((row, index) => {
-                const name = row.querySelector('.item-name-input').value || 'Item -';
+                let nameRaw = row.querySelector('.item-name-input').value || 'Item -';
+                let itemName = nameRaw;
+                let brandName = '-';
+
+                if (nameRaw.includes('/')) {
+                    let parts = nameRaw.split('/');
+                    itemName = parts[0].trim();
+                    brandName = parts[1].trim();
+                }
+
                 const qty = parseFloat(row.querySelector('.qty-input').value) || 0;
                 const mrp = parseFloat(row.querySelector('.mrp-input').value) || 0;
                 const disc = parseFloat(row.querySelector('.disc-input').value) || 0;
-                
                 const netUnit = mrp - (mrp * disc / 100);
                 const total = netUnit * qty;
                 
                 grandTotalDisc += (mrp * qty - netUnit * qty);
                 grandSubTotal += total;
+                totalQtyForFooter += qty;
 
                 const tr = document.createElement('tr');
                 
-                let middleCells = '';
-                if(hasAnyDiscount) {
-                    middleCells = `
-                        <td class="num">${mrp.toFixed(2)}</td>
-                        <td class="num">${disc}%</td>
-                        <td class="num">${netUnit.toFixed(2)}</td>
-                    `;
+                let itemCols = '';
+                if(hasBrands) {
+                    itemCols = `<td>${itemName}</td><td>${brandName}</td>`;
                 } else {
-                    middleCells = `<td class="num">${netUnit.toFixed(2)}</td>`;
+                    itemCols = `<td>${itemName}</td>`;
                 }
 
-                tr.innerHTML = `
-                    <td>${index + 1}</td>
-                    <td>${name}</td>
-                    ${middleCells}
-                    <td style="text-align:center">${qty}</td>
-                    <td class="num">${total.toFixed(2)}</td>
-                `;
+                let priceCols = '';
+                if(hasAnyDiscount) {
+                    priceCols = `<td class="num">${mrp.toFixed(2)}</td><td class="num">${disc}%</td><td class="num">${netUnit.toFixed(2)}</td>`;
+                } else {
+                    priceCols = `<td class="num">${netUnit.toFixed(2)}</td>`;
+                }
+
+                tr.innerHTML = `<td>${index + 1}</td>${itemCols}<td style="text-align:center">${qty}</td>${priceCols}<td class="num">${total.toFixed(2)}</td>`;
                 tbody.appendChild(tr);
             });
 
-            // 5. Footer Calculations
-            let sgst = 0; 
-            let cgst = 0;
+            // Total Qty Row
+            let colspanBeforeQty = hasBrands ? 3 : 2; // #, Item, (Brand)
+            let colspanAfterQty = hasAnyDiscount ? 4 : 2; // Price stuff + Total
+            
+            const footerRow = document.createElement('tr');
+            footerRow.className = 'qty-total-row';
+            footerRow.innerHTML = `
+                <td colspan="${colspanBeforeQty}" style="text-align:right;">Total Qty:</td>
+                <td style="text-align:center;">${totalQtyForFooter}</td>
+                <td colspan="${colspanAfterQty}"></td>
+            `;
+            tbody.appendChild(footerRow);
 
+            // Footer Calcs
+            let sgst = 0, cgst = 0;
             if(gstOn) {
-                sgst = grandSubTotal * 0.09;
-                cgst = grandSubTotal * 0.09;
+                sgst = grandSubTotal * 0.09; cgst = grandSubTotal * 0.09;
                 document.getElementById('pdf-tax-rows').style.display = 'block';
-            } else {
-                document.getElementById('pdf-tax-rows').style.display = 'none';
-            }
+            } else { document.getElementById('pdf-tax-rows').style.display = 'none'; }
 
             let totalWithTax = grandSubTotal + sgst + cgst;
             let roundTotal = Math.round(totalWithTax);
@@ -757,52 +487,42 @@
             document.getElementById('pdfGrandTotal').innerText = roundTotal.toFixed(2);
         }
 
-        // --- PREVIEW ---
         function openPreview() {
             prepareInvoiceHTML();
             const template = document.getElementById('invoice-template');
             const previewContainer = document.getElementById('preview-container');
-            
             previewContainer.innerHTML = '';
             const clone = template.cloneNode(true);
-            
-            clone.style.display = 'block';
-            clone.style.position = 'static'; 
-            
+            clone.style.display = 'block'; clone.style.position = 'static'; 
             previewContainer.appendChild(clone);
             document.getElementById('preview-modal').style.display = 'flex';
         }
+        function closePreview() { document.getElementById('preview-modal').style.display = 'none'; }
 
-        function closePreview() {
-            document.getElementById('preview-modal').style.display = 'none';
-        }
-
-        // --- PDF DOWNLOAD (FIXED BLANK ISSUE) ---
+        // --- ROBUST PDF DOWNLOAD (Overlay Method) ---
         function generatePDF() {
-            // 1. Prepare data
             prepareInvoiceHTML();
             
-            // 2. Show the "Generation Layer" and scroll top
-            const layer = document.getElementById('pdf-generation-layer');
-            const wrapper = document.getElementById('pdf-content-wrapper');
+            // Clone template and put it directly in body with absolute positioning
+            // This ensures full height rendering regardless of viewport
             const template = document.getElementById('invoice-template');
-            
-            window.scrollTo(0,0);
-            
-            // 3. Clone invoice into the generation layer (Visible on top of screen)
-            wrapper.innerHTML = '';
             const clone = template.cloneNode(true);
-            clone.style.display = 'block';
-            clone.style.margin = '0 auto';
-            wrapper.appendChild(clone);
             
-            layer.style.display = 'flex'; // Make it visible
+            clone.style.display = 'block';
+            clone.style.position = 'absolute';
+            clone.style.top = '0';
+            clone.style.left = '0';
+            clone.style.zIndex = '99999';
+            clone.style.width = '790px'; // A4 Width
+            clone.style.background = 'white';
+            
+            document.body.appendChild(clone);
+            window.scrollTo(0,0); // Scroll to top to help renderer
 
             const fileNameClean = customerData.name.replace(/[^a-zA-Z0-9]/g, '_');
             const cleanID = customerData.id.replace(/\//g, '-');
             const finalFileName = `spindle_tree_${fileNameClean}_${cleanID}.pdf`;
 
-            // 4. Generate
             const opt = {
                 margin: 0.2, 
                 filename: finalFileName,
@@ -812,14 +532,12 @@
                 pagebreak: { mode: ['avoid-all', 'css'] }
             };
 
-            // Wait a split second to ensure rendering
+            // 800ms delay to ensure DOM is fully painted
             setTimeout(() => {
                 html2pdf().from(clone).set(opt).save().then(() => {
-                    // 5. Hide layer after save
-                    layer.style.display = 'none';
-                    wrapper.innerHTML = '';
+                    document.body.removeChild(clone);
                 });
-            }, 500);
+            }, 800);
         }
     </script>
 </body>

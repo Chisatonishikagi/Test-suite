@@ -171,17 +171,25 @@
         .pdf-btn { flex: 1; background-color: #4f46e5; color: white; border: none; padding: 15px; border-radius: 8px; cursor: pointer; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; }
         .preview-btn { flex: 1; background-color: #1f2937; color: white; border: none; padding: 15px; border-radius: 8px; cursor: pointer; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; }
 
-        /* --- PDF TEMPLATE (Green Theme) --- */
+        /* --- PDF TEMPLATE (Auto Flow) --- */
         #invoice-template { 
-            display: none; 
-            width: 790px; 
+            position: fixed;
+            top: 0;
+            left: -9999px;
+            width: 790px; /* Standard A4 Width */
+            /* Removed fixed height to allow expansion */
             padding: 40px; 
             background: white; 
             font-family: 'Helvetica', 'Arial', sans-serif; 
             color: #000;
-            position: relative;
         }
 
+        /* Prevent page breaks inside rows */
+        .inv-table tr {
+            page-break-inside: avoid;
+            page-break-after: auto;
+        }
+        
         .inv-header-grid {
             display: flex;
             justify-content: space-between;
@@ -212,7 +220,7 @@
             text-align: center;
             font-size: 20px;
             font-weight: bold;
-            color: #0f4c3a; /* GREEN as requested */
+            color: #0f4c3a; /* GREEN */
             margin: 10px 0 25px 0;
             text-transform: uppercase;
         }
@@ -222,8 +230,6 @@
         }
         .inv-bill-to { width: 48%; }
         .inv-bill-title { font-weight: bold; margin-bottom: 5px; font-size: 13px; }
-        
-        /* Updated Customer Style */
         .inv-cust-row { margin-bottom: 4px; font-size: 12px; }
 
         .inv-meta-details { width: 48%; text-align: right; }
@@ -248,7 +254,7 @@
         .inv-table td.num, .inv-table th.num { text-align: right; }
 
         /* Footer */
-        .inv-footer { display: flex; justify-content: flex-end; margin-top: 25px; }
+        .inv-footer { display: flex; justify-content: flex-end; margin-top: 25px; page-break-inside: avoid; }
         .inv-tax-box { width: 320px; font-size: 12px; }
         
         .inv-tax-row { display: flex; justify-content: space-between; padding: 5px 0; }
@@ -265,7 +271,7 @@
             font-size: 14px;
         }
 
-        .inv-sign { margin-top: 70px; text-align: right; font-size: 12px; }
+        .inv-sign { margin-top: 70px; text-align: right; font-size: 12px; page-break-inside: avoid; }
 
         /* --- PREVIEW MODAL --- */
         .modal-overlay {
@@ -463,11 +469,13 @@
         let customerData = { name: "", phone: "", id: "" };
         let itemCount = 0;
 
-        function generateRandomID() {
-            // Updated to use Current Year dynamically
-            const year = new Date().getFullYear();
-            const random = Math.floor(Math.random() * 9999) + 1;
-            return `FY/${year}/${random}`;
+        function generateID() {
+            // ID Format: FY/Year/DateMonth (e.g., FY/2026/0801)
+            const now = new Date();
+            const year = now.getFullYear();
+            const dd = String(now.getDate()).padStart(2, '0');
+            const mm = String(now.getMonth() + 1).padStart(2, '0');
+            return `FY/${year}/${dd}${mm}`;
         }
 
         function goToCalculator() {
@@ -481,7 +489,7 @@
 
             customerData.name = name;
             customerData.phone = phone || "N/A";
-            customerData.id = generateRandomID();
+            customerData.id = generateID();
 
             // Update UI
             document.getElementById('displayCustName').innerText = customerData.name;
@@ -504,7 +512,7 @@
                 document.getElementById('items-container').innerHTML = "";
                 itemCount = 0;
                 
-                document.getElementById('gstToggle').checked = false; // Reset GST
+                document.getElementById('gstToggle').checked = false; 
                 calculateTotal();
 
                 document.getElementById('calculator-page').classList.remove('active');
@@ -661,11 +669,12 @@
                 document.querySelectorAll('.disc-col').forEach(el => el.style.display = 'table-cell');
                 document.getElementById('pdfNetHeader').innerText = "Net Price";
                 document.querySelector('.disc-row').style.display = 'flex';
+                document.getElementById('pdfNetHeader').style.width = '15%';
             } else {
-                // If Discount is 0: Remove columns, rename Net Price
                 document.querySelectorAll('.mrp-col').forEach(el => el.style.display = 'none');
                 document.querySelectorAll('.disc-col').forEach(el => el.style.display = 'none');
                 document.getElementById('pdfNetHeader').innerText = "Price/Unit";
+                document.getElementById('pdfNetHeader').style.width = '25%';
                 document.querySelector('.disc-row').style.display = 'none';
             }
 
@@ -687,7 +696,6 @@
 
                 const tr = document.createElement('tr');
                 
-                // If we have discounts, show 5 columns. If not, show 3 columns + index + name
                 let middleCells = '';
                 if(hasAnyDiscount) {
                     middleCells = `
@@ -696,7 +704,6 @@
                         <td class="num">${netUnit.toFixed(2)}</td>
                     `;
                 } else {
-                    // "Price/Unit" takes the place of Net Price
                     middleCells = `<td class="num">${netUnit.toFixed(2)}</td>`;
                 }
 
@@ -742,10 +749,13 @@
             
             previewContainer.innerHTML = '';
             const clone = template.cloneNode(true);
-            clone.style.display = 'block'; 
-            clone.style.margin = '0 auto';
-            previewContainer.appendChild(clone);
             
+            clone.style.position = 'static';
+            clone.style.left = 'auto';
+            clone.style.display = 'block';
+            clone.style.margin = '0 auto';
+            
+            previewContainer.appendChild(clone);
             document.getElementById('preview-modal').style.display = 'flex';
         }
 
@@ -753,26 +763,42 @@
             document.getElementById('preview-modal').style.display = 'none';
         }
 
-        // --- PDF DOWNLOAD ---
+        // --- PDF DOWNLOAD (MULTI-PAGE ENABLED) ---
         function generatePDF() {
             prepareInvoiceHTML();
-            const element = document.getElementById('invoice-template');
-            element.style.display = 'block'; 
+            
+            // 1. Clone the template
+            const template = document.getElementById('invoice-template');
+            const clone = template.cloneNode(true);
+            
+            // 2. Setup clone for multi-page rendering
+            clone.style.position = 'absolute';
+            clone.style.top = '0';
+            clone.style.left = '0';
+            clone.style.width = '790px'; // Approx A4 width @ 96 DPI
+            clone.style.zIndex = '9999';
+            clone.style.background = 'white';
+            clone.style.display = 'block';
+            
+            document.body.appendChild(clone);
 
             const fileNameClean = customerData.name.replace(/[^a-zA-Z0-9]/g, '_');
             const cleanID = customerData.id.replace(/\//g, '-');
             const finalFileName = `spindle_tree_${fileNameClean}_${cleanID}.pdf`;
 
+            // 3. Updated Options for Multi-Page
             const opt = {
-                margin: 0, 
+                margin: 0.2, // Small margin to prevent clipping
                 filename: finalFileName,
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { scale: 2, useCORS: true }, 
-                jsPDF: { unit: 'px', format: [790, 1120], orientation: 'portrait' } 
+                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
+                pagebreak: { mode: ['avoid-all', 'css', 'legacy'] } // Smart page breaking
             };
 
-            html2pdf().from(element).set(opt).save().then(() => {
-                element.style.display = 'none';
+            // 4. Generate
+            html2pdf().from(clone).set(opt).save().then(() => {
+                document.body.removeChild(clone);
             });
         }
     </script>

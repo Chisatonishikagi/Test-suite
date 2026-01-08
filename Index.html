@@ -171,13 +171,10 @@
         .pdf-btn { flex: 1; background-color: #4f46e5; color: white; border: none; padding: 15px; border-radius: 8px; cursor: pointer; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; }
         .preview-btn { flex: 1; background-color: #1f2937; color: white; border: none; padding: 15px; border-radius: 8px; cursor: pointer; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; }
 
-        /* --- PDF TEMPLATE (Auto Flow) --- */
+        /* --- PDF TEMPLATE (Hidden by default) --- */
         #invoice-template { 
-            position: fixed;
-            top: 0;
-            left: -9999px;
-            width: 790px; /* Standard A4 Width */
-            /* Removed fixed height to allow expansion */
+            display: none; 
+            width: 790px; 
             padding: 40px; 
             background: white; 
             font-family: 'Helvetica', 'Arial', sans-serif; 
@@ -185,11 +182,8 @@
         }
 
         /* Prevent page breaks inside rows */
-        .inv-table tr {
-            page-break-inside: avoid;
-            page-break-after: auto;
-        }
-        
+        .inv-table tr { page-break-inside: avoid; }
+
         .inv-header-grid {
             display: flex;
             justify-content: space-between;
@@ -254,7 +248,7 @@
         .inv-table td.num, .inv-table th.num { text-align: right; }
 
         /* Footer */
-        .inv-footer { display: flex; justify-content: flex-end; margin-top: 25px; page-break-inside: avoid; }
+        .inv-footer { display: flex; justify-content: flex-end; margin-top: 25px; }
         .inv-tax-box { width: 320px; font-size: 12px; }
         
         .inv-tax-row { display: flex; justify-content: space-between; padding: 5px 0; }
@@ -271,7 +265,7 @@
             font-size: 14px;
         }
 
-        .inv-sign { margin-top: 70px; text-align: right; font-size: 12px; page-break-inside: avoid; }
+        .inv-sign { margin-top: 70px; text-align: right; font-size: 12px; }
 
         /* --- PREVIEW MODAL --- */
         .modal-overlay {
@@ -289,6 +283,26 @@
             color: white; font-size: 30px; cursor: pointer; z-index: 1010;
         }
         #preview-container { transform: scale(0.85); transform-origin: top center; background: white; }
+        
+        /* --- PDF GENERATION LAYER (THE FIX) --- */
+        #pdf-generation-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 99999;
+            display: none;
+            overflow-y: auto;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 20px;
+        }
+        #pdf-content-wrapper {
+            width: 790px;
+            margin-bottom: 50px;
+        }
 
     </style>
 </head>
@@ -374,6 +388,10 @@
             <div id="preview-container"></div>
         </div>
     </div>
+    
+    <div id="pdf-generation-layer">
+        <div id="pdf-content-wrapper"></div>
+    </div>
 
     <div id="invoice-template">
         <div class="inv-header-grid">
@@ -413,10 +431,10 @@
                     <th style="width: 5%;">#</th>
                     <th style="width: 35%;">Item Description</th>
                     
-                    <th style="width: 15%;" class="num mrp-col">MRP</th>
+                    <th style="width: 15%;" class="num mrp-col">Price</th>
                     <th style="width: 10%;" class="num disc-col">Disc%</th>
                     
-                    <th style="width: 15%;" class="num" id="pdfNetHeader">Net Price</th>
+                    <th style="width: 15%;" class="num" id="pdfNetHeader">Price/Unit</th>
                     <th style="width: 5%; text-align:center;">Qty</th>
                     <th style="width: 15%;" class="num">Total</th>
                 </tr>
@@ -470,12 +488,13 @@
         let itemCount = 0;
 
         function generateID() {
-            // ID Format: FY/Year/DateMonth (e.g., FY/2026/0801)
             const now = new Date();
             const year = now.getFullYear();
             const dd = String(now.getDate()).padStart(2, '0');
             const mm = String(now.getMonth() + 1).padStart(2, '0');
-            return `FY/${year}/${dd}${mm}`;
+            const hh = String(now.getHours()).padStart(2, '0');
+            const min = String(now.getMinutes()).padStart(2, '0');
+            return `FY/${year}/${mm}${dd}-${hh}${min}`;
         }
 
         function goToCalculator() {
@@ -539,7 +558,7 @@
                         <div class="price-stack-wrapper">
                             <label class="micro-label">Pricing (MRP / Disc)</label>
                             <div class="stacked-box">
-                                <input type="number" class="mrp-input" placeholder="MRP ₹" oninput="calculateTotal()">
+                                <input type="number" class="mrp-input" placeholder="Price ₹" oninput="calculateTotal()">
                                 <input type="number" class="disc-input" placeholder="Disc %" oninput="calculateTotal()">
                             </div>
                         </div>
@@ -657,13 +676,13 @@
 
             const rows = document.querySelectorAll('.item-row');
             
-            // 2. Discount Logic: Check if ANY item has a discount > 0
+            // 2. Discount Logic
             let hasAnyDiscount = false;
             rows.forEach(row => {
                 if((parseFloat(row.querySelector('.disc-input').value) || 0) > 0) hasAnyDiscount = true;
             });
 
-            // 3. Configure PDF Headers based on Discount Status
+            // 3. Configure PDF Headers
             if (hasAnyDiscount) {
                 document.querySelectorAll('.mrp-col').forEach(el => el.style.display = 'table-cell');
                 document.querySelectorAll('.disc-col').forEach(el => el.style.display = 'table-cell');
@@ -688,11 +707,8 @@
                 const netUnit = mrp - (mrp * disc / 100);
                 const total = netUnit * qty;
                 
-                // Track totals
-                const totalMrp = mrp * qty;
-                const totalNet = netUnit * qty;
-                grandTotalDisc += (totalMrp - totalNet);
-                grandSubTotal += totalNet;
+                grandTotalDisc += (mrp * qty - netUnit * qty);
+                grandSubTotal += total;
 
                 const tr = document.createElement('tr');
                 
@@ -717,7 +733,7 @@
                 tbody.appendChild(tr);
             });
 
-            // 5. Footer Calculations & Visibility
+            // 5. Footer Calculations
             let sgst = 0; 
             let cgst = 0;
 
@@ -750,10 +766,8 @@
             previewContainer.innerHTML = '';
             const clone = template.cloneNode(true);
             
-            clone.style.position = 'static';
-            clone.style.left = 'auto';
             clone.style.display = 'block';
-            clone.style.margin = '0 auto';
+            clone.style.position = 'static'; 
             
             previewContainer.appendChild(clone);
             document.getElementById('preview-modal').style.display = 'flex';
@@ -763,43 +777,49 @@
             document.getElementById('preview-modal').style.display = 'none';
         }
 
-        // --- PDF DOWNLOAD (MULTI-PAGE ENABLED) ---
+        // --- PDF DOWNLOAD (FIXED BLANK ISSUE) ---
         function generatePDF() {
+            // 1. Prepare data
             prepareInvoiceHTML();
             
-            // 1. Clone the template
+            // 2. Show the "Generation Layer" and scroll top
+            const layer = document.getElementById('pdf-generation-layer');
+            const wrapper = document.getElementById('pdf-content-wrapper');
             const template = document.getElementById('invoice-template');
+            
+            window.scrollTo(0,0);
+            
+            // 3. Clone invoice into the generation layer (Visible on top of screen)
+            wrapper.innerHTML = '';
             const clone = template.cloneNode(true);
-            
-            // 2. Setup clone for multi-page rendering
-            clone.style.position = 'absolute';
-            clone.style.top = '0';
-            clone.style.left = '0';
-            clone.style.width = '790px'; // Approx A4 width @ 96 DPI
-            clone.style.zIndex = '9999';
-            clone.style.background = 'white';
             clone.style.display = 'block';
+            clone.style.margin = '0 auto';
+            wrapper.appendChild(clone);
             
-            document.body.appendChild(clone);
+            layer.style.display = 'flex'; // Make it visible
 
             const fileNameClean = customerData.name.replace(/[^a-zA-Z0-9]/g, '_');
             const cleanID = customerData.id.replace(/\//g, '-');
             const finalFileName = `spindle_tree_${fileNameClean}_${cleanID}.pdf`;
 
-            // 3. Updated Options for Multi-Page
+            // 4. Generate
             const opt = {
-                margin: 0.2, // Small margin to prevent clipping
+                margin: 0.2, 
                 filename: finalFileName,
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: { scale: 2, useCORS: true }, 
                 jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
-                pagebreak: { mode: ['avoid-all', 'css', 'legacy'] } // Smart page breaking
+                pagebreak: { mode: ['avoid-all', 'css'] }
             };
 
-            // 4. Generate
-            html2pdf().from(clone).set(opt).save().then(() => {
-                document.body.removeChild(clone);
-            });
+            // Wait a split second to ensure rendering
+            setTimeout(() => {
+                html2pdf().from(clone).set(opt).save().then(() => {
+                    // 5. Hide layer after save
+                    layer.style.display = 'none';
+                    wrapper.innerHTML = '';
+                });
+            }, 500);
         }
     </script>
 </body>
